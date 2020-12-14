@@ -1,0 +1,51 @@
+/*This should never be imported direclty to the website html only to the css files*/
+
+@font-face {
+    font-family: Roboto;
+    src: local('Roboto'), local('roboto'), local('Roboto-Black');
+    src: url("Roboto-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: Roboto, sans-serif;
+}
+
+/*font {*/
+/*    font-family: Roboto, sans-serif;*/
+/*    !*Color 8*!*/
+/*    color: black;*/
+/*}*/
+
+/*basefont {*/
+/*    font-family: Roboto, sans-serif;*/
+/*    !*Color*!*/
+/*    color: black;*/
+/*}*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+textarea,
+text,
+span,
+figcaption,
+button,
+caption,
+input,
+label,
+select,
+html,
+p {
+    font-family: 'Roboto', sans-serif;
+    color: black;
+}
+
+a {
+    font-family: 'Roboto', sans-serif;
+}
