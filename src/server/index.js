@@ -8,16 +8,16 @@ const apiKey =  process.env.API_KEY;
 const fetch = require('node-fetch');
 const axios = require('axios');
 
-const app = express();
-
+const app = express(), DIST_DIR = __dirname,
+    HTML_FILE = path.join(DIST_DIR, 'index.html');
+app.use(express.static(DIST_DIR));
 app.use(express.static('dist'));
 // const rootPath  = __dirname.replace(`${path.sep}server`,"");
 // console.log(rootPath);
 // app.use(express.static(path.join(rootPath, 'client')));
 //
-app.get('/',  (req, res) => {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('src/client/views/index.html'))
+app.get('*', (req, res) => {
+    res.sendFile(HTML_FILE)
 });
 
 // designates what port the app will listen to for incoming requests
@@ -27,7 +27,7 @@ app.listen(8080,  () => {
 
 app.post('/test', async (req, res) => {
 
-   const url = generateUrlFromUrl(res.url);
+   const url = generateUrlFromUrl(req.url);
     const jsonData = await getData(url).catch((e) => {
         console.log("get-apod error " + e);
         res.status(500).send()

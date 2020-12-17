@@ -2,13 +2,28 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-
+const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
     entry: './src/client/index.js',
+    // entry: {
+    //     server: './server/server.js',
+    // },
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
+    target: 'node',
+    output: {
+        path: path.join(__dirname, 'dist'),
+        publicPath: '/',
+        filename: '[name].js'
+    },
+    node: {
+        // Need this when working with express, otherwise the build fails
+        __dirname: false,   // if you don't put this is, __dirname
+        __filename: false,  // and __filename return blank or /
+    },
+    externals: [nodeExternals()], // Need this to avoid error when working with Express
     module: {
         rules: [
             {
@@ -20,7 +35,6 @@ module.exports = {
                         presets: ["@babel/preset-env"],
                     }
                 }
-
             },
             {
                 test: /\.css$/i,
@@ -75,6 +89,7 @@ module.exports = {
             minify: true,
             cache: true,
             title: "Webpack App Dev",
+            excludeChunks: [ 'server' ]
         }),
         new CleanWebpackPlugin({
             // Simulate the removal of files

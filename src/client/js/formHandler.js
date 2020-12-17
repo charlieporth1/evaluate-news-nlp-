@@ -1,5 +1,17 @@
 import {checkForName} from "./nameChecker.js";
 
+const SERVER = 'http://localhost:8080';
+
+function defaultFetchOpts() {
+    return {
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': SERVER,
+        },
+    }
+}
+
 function handleSubmit(event) {
     event.preventDefault();
 
@@ -14,9 +26,7 @@ function handleSubmit(event) {
     fetch('http://localhost:8080/test', {
         method: 'post',
         body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        headers: {...defaultFetchOpts()}
     })
         .then(res => res.json()).then(res => console.log(res.json()))
         .then((res) => {
@@ -25,4 +35,3 @@ function handleSubmit(event) {
 }
 
 export {handleSubmit}
-// module.exports = handleSubmit;

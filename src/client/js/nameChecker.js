@@ -1,5 +1,3 @@
-import {handleSubmit} from "./formHandler";
-
 function checkForName(inputText) {
     console.log("::: Running checkForName :::", inputText);
     let names = [
@@ -16,4 +14,3 @@ function checkForName(inputText) {
 }
 
 export { checkForName }
-// module.exports = checkForName;
