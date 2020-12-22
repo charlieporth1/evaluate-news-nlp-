@@ -9,7 +9,6 @@
     "build-prod": "webpack --config webpack.prod.js",
     "build-dev": "node_modules/.bin/webpack-dev-server  --config webpack.dev.js --open",
     "build": "rm -rf dist && webpack --mode development"
-
   },
   "keywords": [],
   "author": "",
@@ -17,6 +16,7 @@
   "description": "",
   "dependencies": {
     "axios": "^0.21.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",

@@ -23,15 +23,21 @@ function handleSubmit(event) {
         url: urlText,
     };
     console.log("::: Form Submitted :::");
-    fetch('http://localhost:8080/test', {
-        method: 'post',
-        body: JSON.stringify(data),
-        headers: {...defaultFetchOpts()}
-    })
-        .then(res => res.json()).then(res => console.log(res.json()))
-        .then((res) => {
-            document.getElementById('results').innerHTML = JSON.stringify(res);
-        });
+    new Promise(async resolve => {
+        // POST request to `${SERVER}/api/races/${id}/accelerate`
+        // options parameter provided as defaultFetchOpts
+        // no body or datatype needed for this request
+        await fetch(`${SERVER}/test`, {
+            method: 'post',
+            body: JSON.stringify(data),
+            headers: {...defaultFetchOpts()}
+        })
+            .then(async res => await res.json())
+            .then(json => console.log(json))
+            .then((json) => {
+                document.getElementById('results').innerHTML = JSON.stringify(json);
+            }).catch((e)=> Promise.reject(e))
+    }).catch((e)=> Promise.reject(e))
 }
 
 export {handleSubmit}

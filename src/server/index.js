@@ -4,38 +4,40 @@ const https = require('follow-redirects').https;
 const fs = require('fs');
 const express = require('express');
 const mockAPIResponse = require('./mockAPI.js');
-const apiKey =  process.env.API_KEY;
+const apiKey = process.env.API_KEY;
 const fetch = require('node-fetch');
 const axios = require('axios');
-
-const app = express(), DIST_DIR = __dirname,
-    HTML_FILE = path.join(DIST_DIR, 'index.html');
-app.use(express.static(DIST_DIR));
+const cors = require("cors");
+const app = express();
+app.use(cors());
 app.use(express.static('dist'));
-// const rootPath  = __dirname.replace(`${path.sep}server`,"");
-// console.log(rootPath);
-// app.use(express.static(path.join(rootPath, 'client')));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 //
 app.get('*', (req, res) => {
-    res.sendFile(HTML_FILE)
+    res.sendFile((path.resolve('src/client/views/index.html')));
 });
 
 // designates what port the app will listen to for incoming requests
-app.listen(8080,  () => {
+app.listen(8080, () => {
     console.log('Example app listening on port 8080!')
 });
 
 app.post('/test', async (req, res) => {
+    const url = req.body.url;
+    try {
+        const requestUrl = generateUrlFromUrl(url);
+        const jsonData = await getData(requestUrl).catch((e) => {
+            console.log("get-apod error " + e);
+            res.status(500).send()
+        });
+        res.send(jsonData)
+    } catch (e) {
+        console.error(e);
+        res.status(500).send(e)
+    }
 
-   const url = generateUrlFromUrl(req.url);
-    const jsonData = await getData(url).catch((e) => {
-        console.log("get-apod error " + e);
-        res.status(500).send()
-    });
-   console.log(jsonData);
-    res.send(jsonData)
 });
-
 
 
 async function getData(url) {
@@ -55,23 +57,19 @@ async function getData(url) {
         });
 
 }
-function postData() {
-    const body = { a: 1 };
 
-    fetch('https://httpbin.org/post', {
-        method: 'post',
-        body:    JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-    })
-        .then(res => res.json())
-        .then(json => console.log(json));
-}
 function generateUrl(text) {
-    text = encodeURI(text);
-    return `https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=en&txt=${text}&model=general`
+    const encodedText = encodeURI(text);
+    let queryType = 'txt';
+    if (text.toString().includes('http')) {
+        queryType = 'url';
+    } else if (text.toString().includes('https')) {
+        throw new Error('Cannot be https for a artical')
+    }
+    return `https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=en&${queryType}=${encodedText}&model=general`
 }
 
 function generateUrlFromUrl(url) {
-    url = encodeURI(url);
-    return `https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=en&url=${url}&model=general`
+    // url = encodeURI(url);
+    return `https://api.meaningcloud.com/sentiment-2.1?key=${apiKey}&lang=en&url=${url}&model=general&of=json`
 }
