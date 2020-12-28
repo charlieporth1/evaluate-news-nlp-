@@ -1,7 +1,6 @@
-import fontCss from "../font/Roboto/font-default.css";
-import baseCss from "../styles/base.css";
-import footerCss from "../styles/footer.css";
-import formCss from "../styles/form.css";
-import headerCss from "../styles/header.css";
-import resetsCss from "../styles/resets.css";
-export {fontCss, baseCss, footerCss, formCss, headerCss, resetsCss}
+import "../font/Roboto/font-default.css";
+import "../styles/base.css";
+import "../styles/footer.css";
+import "../styles/form.css";
+import "../styles/header.css";
+import "../styles/resets.css";

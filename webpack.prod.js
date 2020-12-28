@@ -1,12 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
-    // entry: {
-    //     server: './server/server.js',
-    // },
     mode: 'production',
     devtool: 'source-map',
     stats: 'verbose',
@@ -21,7 +19,6 @@ module.exports = {
         __dirname: false,   // if you don't put this is, __dirname
         __filename: false,  // and __filename return blank or /
     },
-    externals: [nodeExternals()], // Need this to avoid error when working with Express
     module: {
         rules: [
             {
@@ -86,7 +83,7 @@ module.exports = {
             inject: true,
             minify: true,
             cache: true,
-            title: "Webpack App Dev",
+            title: "Webpack App Prod",
             excludeChunks: [ 'server' ]
         }),
         new CleanWebpackPlugin({
