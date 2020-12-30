@@ -1,10 +1,16 @@
 
 import { checkForName } from './js/nameChecker.js'
 import { handleSubmit } from './js/formHandler.js'
-import './js/formHandler.js'
 import './js/css_files.js';
-console.log(handleSubmit);
-console.log(checkForName);
+window.checkForName = checkForName;
 window.handleSubmit = handleSubmit;
-alert("I EXIST");
-console.log("CHANGE!!");
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/index.js').then(registration => {
+            console.log('SW registered: ', registration);
+        }).catch(registrationError => {
+            console.log('SW registration failed: ', registrationError);
+        });
+    });
+}

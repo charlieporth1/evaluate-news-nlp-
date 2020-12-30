@@ -1,19 +1,25 @@
-require('dotenv').config();
-let path = require('path');
-const https = require('follow-redirects').https;
-const fs = require('fs');
-const express = require('express');
-const mockAPIResponse = require('./mockAPI.js');
-const apiKey = process.env.API_KEY;
-const fetch = require('node-fetch');
-const axios = require('axios');
-const cors = require("cors");
+// require('dotenv').config();
+// let path = require('path');
+// const express = require('express');
+// const mockAPIResponse = require('./mockAPI.js');
+// const apiKey = process.env.API_KEY;
+// const axios = require('axios');
+// const cors = require("cors");
+import * as dotenv from 'dotenv';
+dotenv.config();
+import path from 'path';
+import express from 'express'
+import axios from 'axios';
+import cors from "cors";
 const app = express();
 app.use(cors());
 app.use(express.static('dist'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-//
+const middleware = require('webpack-dev-middleware');
+app.use(middleware(compiler, {
+    // webpack-dev-middleware options
+}));
 app.get('*', (req, res) => {
     res.sendFile((path.resolve('src/client/views/index.html')));
 });

@@ -30,3 +30,9 @@ Remember that once you clone, you will still need to install everything:
 
 ### Step 4: Environment Variables
 Get an API key [here](https://www.meaningcloud.com/) by creating an account and creating an env 
+
+
+### Start the server 
+using `npm start`
+### Start the client 
+using `npm run start:dev`
