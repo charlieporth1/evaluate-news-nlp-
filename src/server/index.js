@@ -17,9 +17,9 @@ app.use(express.static('dist'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 const middleware = require('webpack-dev-middleware');
-app.use(middleware(compiler, {
-    // webpack-dev-middleware options
-}));
+// app.use(middleware(compiler, {
+//     // webpack-dev-middleware options
+// }));
 app.get('*', (req, res) => {
     res.sendFile((path.resolve('src/client/views/index.html')));
 });
