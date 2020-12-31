@@ -1,16 +1,16 @@
-// require('dotenv').config();
-// let path = require('path');
-// const express = require('express');
-// const mockAPIResponse = require('./mockAPI.js');
-// const apiKey = process.env.API_KEY;
-// const axios = require('axios');
-// const cors = require("cors");
-import * as dotenv from 'dotenv';
-dotenv.config();
-import path from 'path';
-import express from 'express'
-import axios from 'axios';
-import cors from "cors";
+require('dotenv').config();
+let path = require('path');
+const express = require('express');
+const mockAPIResponse = require('./mockAPI.js');
+const apiKey = process.env.API_KEY;
+const axios = require('axios');
+const cors = require("cors");
+// import * as dotenv from 'dotenv';
+// dotenv.config();
+// import path from 'path';
+// import express from 'express'
+// import axios from 'axios';
+// import cors from "cors";
 const app = express();
 app.use(cors());
 app.use(express.static('dist'));
