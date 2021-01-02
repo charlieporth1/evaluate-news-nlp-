@@ -36,3 +36,7 @@ Get an API key [here](https://www.meaningcloud.com/) by creating an account and 
 using `npm start`
 ### Start the client 
 using `npm run start:dev`
+
+### Use this page for demo
+Only http pages work due to a limit in the api choosen to be used
+`http://info.cern.ch/`

@@ -5,6 +5,7 @@ const mockAPIResponse = require('./mockAPI.js');
 const apiKey = process.env.API_KEY;
 const axios = require('axios');
 const cors = require("cors");
+const bodyParser = require('body-parser');
 // import * as dotenv from 'dotenv';
 // dotenv.config();
 // import path from 'path';
@@ -14,23 +15,19 @@ const cors = require("cors");
 const app = express();
 app.use(cors());
 app.use(express.static('dist'));
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-const middleware = require('webpack-dev-middleware');
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+// const middleware = require('webpack-dev-middleware');
 // app.use(middleware(compiler, {
-//     // webpack-dev-middleware options
+//     webpack-dev-middleware options
 // }));
 app.get('*', (req, res) => {
     res.sendFile((path.resolve('src/client/views/index.html')));
 });
-
-// designates what port the app will listen to for incoming requests
-app.listen(8080, () => {
-    console.log('Example app listening on port 8080!')
-});
-
 app.post('/test', async (req, res) => {
-    const url = req.body.url;
+    console.log(req);
+    const url = req.body.sentLink;
+    console.log(url);
     try {
         const requestUrl = generateUrlFromUrl(url);
         const jsonData = await getData(requestUrl).catch((e) => {
@@ -44,6 +41,13 @@ app.post('/test', async (req, res) => {
     }
 
 });
+
+// designates what port the app will listen to for incoming requests
+app.listen(8080, () => {
+    console.log('Example app listening on port 8080!')
+});
+
+
 
 
 async function getData(url) {
