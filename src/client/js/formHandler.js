@@ -73,4 +73,4 @@ function generateHTML(json) {
 //     `;
 //     document.head.appendChild(utilsScript);
 // }
-export {handleSubmit, generateHTML, addScript}
+export {handleSubmit, generateHTML}
