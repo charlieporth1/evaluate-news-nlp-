@@ -1,7 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const nodeExternals = require('webpack-node-externals');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -19,6 +21,7 @@ module.exports = {
         __dirname: false,   // if you don't put this is, __dirname
         __filename: false,  // and __filename return blank or /
     },
+    externals: [nodeExternals()], // Need this to avoid error when working with Express
     module: {
         rules: [
             {
@@ -94,6 +97,33 @@ module.exports = {
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
+        }),
+        new WorkboxPlugin.GenerateSW({
+            // these options encourage the ServiceWorkers to get in there fast
+            // and not allow any straggling "old" SWs to hang around
+            clientsClaim: true,
+            skipWaiting: true,
+            // Do not precache images
+            exclude: [/\.(?:png|jpg|jpeg|svg)$/],
+
+            // Define runtime caching rules.
+            runtimeCaching: [{
+                // Match any request that ends with .png, .jpg, .jpeg or .svg.
+                urlPattern: /\.(?:png|jpg|jpeg|svg)$/,
+
+                // Apply a cache-first strategy.
+                handler: 'CacheFirst',
+
+                options: {
+                    // Use a custom cache name.
+                    cacheName: 'images',
+
+                    // Only cache 10 images.
+                    expiration: {
+                        maxEntries: 10,
+                    },
+                },
+            }],
         }),
     ]
 };

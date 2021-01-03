@@ -1,4 +1,6 @@
 import "../font/Roboto/font-default.css";
+import "../styles/defaultElements.css";
+import "../styles/resultData.css";
 import "../styles/base.css";
 import "../styles/footer.css";
 import "../styles/form.css";

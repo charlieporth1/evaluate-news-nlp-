@@ -1,8 +1,13 @@
-
-import { checkForName } from './js/nameChecker.js'
-import { handleSubmit } from './js/formHandler.js'
 import './js/css_files.js';
+import {expandableById, clickToCopyAction} from './js/resultHandler.js'
+import { checkForName } from './js/nameChecker.js'
+import { handleSubmit, generateHTML, addScript } from './js/formHandler.js'
+
+window.expandableById = expandableById;
+window.clickToCopyAction = clickToCopyAction;
 window.checkForName = checkForName;
+window.addScript = addScript;
+window.generateHTML = generateHTML;
 window.handleSubmit = handleSubmit;
 
 if ('serviceWorker' in navigator) {

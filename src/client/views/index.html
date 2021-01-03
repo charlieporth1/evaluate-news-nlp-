@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>Test</title>
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-    <script src="main.js"></script>
     <script src="https://polyfill.io/v3/polyfill.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="main.js"></script>
 </head>
 
 <body>
@@ -23,17 +24,15 @@
     <section>
 <!--        <form onsubmit="return handleSubmit(event)">-->
             <div class="form-input-div">
-                <label for="name">Your Name</label>
+                <label for="name">Your name</label>
                 <input id="name" type="text" name="input" value="" placeholder="Name">
                 <label for="url">Article URL</label>
-                <p>HTTP urls only. No HTTPS</p>
+                <p id="directions">HTTP urls only. No HTTPS</p>
                 <input id="url" type="url" name="input" value="" placeholder="Article URL">
             </div>
             <input type="submit" name="" value="submit" onclick="return handleSubmit(event)"
                    onsubmit="return handleSubmit(event)">
-
 <!--        </form>-->
-
         </section>
 
             <section>
@@ -43,7 +42,7 @@
 </main>
 
 <footer>
-    <p>This is a footer</p>
+    <p>CTP Dev</p>
 </footer>
 
 </body>

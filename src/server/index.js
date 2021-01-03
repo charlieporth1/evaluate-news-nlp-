@@ -25,9 +25,7 @@ app.get('*', (req, res) => {
     res.sendFile((path.resolve('src/client/views/index.html')));
 });
 app.post('/test', async (req, res) => {
-    console.log(req);
     const url = req.body.sentLink;
-    console.log(url);
     try {
         const requestUrl = generateUrlFromUrl(url);
         const jsonData = await getData(requestUrl).catch((e) => {

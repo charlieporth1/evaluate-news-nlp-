@@ -1,0 +1,20 @@
+.result-h {
+    font-size: 1.2em;
+    padding: 10px;
+}
+table, th, td {
+    border: 1px solid black;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+th {
+    text-align: left;
+}
+table {
+    border-spacing: 5px;
+}

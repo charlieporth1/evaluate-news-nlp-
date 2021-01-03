@@ -1,0 +1,19 @@
+:root {
+    --element-background-light: #f0f0f0;
+    --background-light: rgba(52, 149, 202, 0.72);
+    --primary: #ffb562;
+    --primary-dark: #cb6531;
+    --primary-light: #ffcc47;
+    --text-primary: #000;
+    --button-primary: var(--primary-dark);
+    --button-text-primary: #fff;
+    --default-border-radius: 5px;
+    --default-shadow: 2px 2px 2px #888888;
+}
+.default-button {
+    background-color: var(--button-primary);
+    color: var(--button-text-primary);
+    font-family: Roboto, sans-serif;
+    border-radius: var(--default-border-radius);
+    padding: 10px 30px 10px 30px;
+}
