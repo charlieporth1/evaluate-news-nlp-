@@ -5,17 +5,21 @@ function expandableById(elementId) {
     dataElement.style.display = toggleStr;
 }
 function clickToCopyAction(elementId) {
-    /* Get the text field */
-    let copyText = document.getElementById(elementId);
+    try {
+        /* Get the text field */
+        let copyText = document.getElementById(elementId);
 
-    /* Select the text field */
-    copyText.select();
-    copyText.setSelectionRange(0, 99999); /* For mobile devices */
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
-    /* Copy the text inside the text field */
-    document.execCommand("copy");
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
 
-    /* Alert the copied text */
-    alert("Copied the text: " + copyText.value);
+        /* Alert the copied text */
+        return copyText;
+    } catch {
+        return "Copied";
+    }
 }
 export {expandableById, clickToCopyAction }
