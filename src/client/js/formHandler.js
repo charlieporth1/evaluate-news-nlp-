@@ -5,7 +5,7 @@ import {checkForName} from "./nameChecker.js";
 //     const tokens = marked.lexer(match);
 //     return marked.parser(tokens);
 // });
-const SERVER = 'http://localhost:8080';
+const SERVER = 'http://localhost:3000';
 
 function handleSubmit(event) {
     event.preventDefault();
@@ -49,8 +49,16 @@ function generateHTML(json) {
         <td>${json.agreement}</td>
         </tr>
         <tr>
-        <td>Agreement</td>
-        <td>${json.agreement}</td>
+        <td>Irony</td>
+        <td>${json.irony}</td>
+        </tr>
+        <tr>
+        <td>Score Tag</td>
+        <td>${json.score_tag}</td>
+        </tr>
+        <tr>
+        <td>Subjectivity</td>
+        <td>${json.subjectivity}</td>
         </tr>
         </table>
         <h4 onclick="expandableById('result-json-data')" class="result-h">SHOW RAW JSON</h4>
