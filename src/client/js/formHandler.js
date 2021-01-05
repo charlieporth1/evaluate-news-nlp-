@@ -5,7 +5,7 @@ import {checkForName} from "./nameChecker.js";
 //     const tokens = marked.lexer(match);
 //     return marked.parser(tokens);
 // });
-const SERVER = 'http://localhost:8080';
+const SERVER = 'http://localhost:3000';
 
 function handleSubmit(event) {
     try {
